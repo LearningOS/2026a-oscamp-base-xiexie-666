@@ -12,7 +12,8 @@ pub fn concurrent_counter(n_threads: usize, count_per_thread: usize) -> usize {
         }));
     }
     for handle in handles { handle.join().unwrap(); }
-    *counter.lock().unwrap()
+    let result = *counter.lock().unwrap();
+    result
 }
 
 pub fn concurrent_collect(n_threads: usize) -> Vec<usize> {
