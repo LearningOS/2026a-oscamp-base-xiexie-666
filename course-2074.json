@@ -2,7 +2,7 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-xiexie-666",
-  "commit": "63f43acc092b3693989e7e5293bd81c9646be7c6",
+  "commit": "308bc6fa44ad1d5bbb8f0c28a66048267a2f71e7",
   "score": 43,
   "totalScore": 100,
   "exercises": [
@@ -176,7 +176,7 @@
     }
   ],
   "student": "xiexie-666",
-  "runId": "37337052567",
+  "runId": "37338439302",
   "runAttempt": "1",
   "upload": {
     "status": "pending"
