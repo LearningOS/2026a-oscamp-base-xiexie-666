@@ -32,7 +32,7 @@ unsafe impl GlobalAlloc for FreeListAllocator {
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
         let size = layout.size().max(core::mem::size_of::<FreeBlock>());
         let align = layout.align().max(core::mem::align_of::<FreeBlock>());
-        let mut prev = null_mut();
+        let mut prev: *mut FreeBlock = null_mut();
         let mut curr = self.free_list_head();
         while !curr.is_null() {
             let next = (*curr).next;
