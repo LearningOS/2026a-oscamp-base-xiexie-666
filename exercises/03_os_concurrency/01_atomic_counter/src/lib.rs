@@ -8,3 +8,63 @@ impl AtomicCounter {
  pub fn compare_and_swap(&self,e:u64,n:u64)->Result<u64,u64>{self.value.compare_exchange(e,n,Ordering::AcqRel,Ordering::Acquire)}
  pub fn fetch_multiply(&self,m:u64)->u64{loop{let c=self.get();if let Ok(v)=self.compare_and_swap(c,c*m){return v;}}}
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::sync::Arc;
+    use std::thread;
+
+    #[test]
+    fn test_basic_ops() {
+        let c = AtomicCounter::new(0);
+        assert_eq!(c.increment(), 0);
+        assert_eq!(c.increment(), 1);
+        assert_eq!(c.get(), 2);
+        assert_eq!(c.decrement(), 2);
+        assert_eq!(c.get(), 1);
+    }
+
+    #[test]
+    fn test_cas_success() {
+        let c = AtomicCounter::new(10);
+        assert_eq!(c.compare_and_swap(10, 20), Ok(10));
+        assert_eq!(c.get(), 20);
+    }
+
+    #[test]
+    fn test_cas_failure() {
+        let c = AtomicCounter::new(10);
+        assert_eq!(c.compare_and_swap(5, 20), Err(10));
+        assert_eq!(c.get(), 10);
+    }
+
+    #[test]
+    fn test_fetch_multiply() {
+        let c = AtomicCounter::new(3);
+        let old = c.fetch_multiply(4);
+        assert_eq!(old, 3);
+        assert_eq!(c.get(), 12);
+    }
+
+    #[test]
+    fn test_concurrent_increment() {
+        let counter = Arc::new(AtomicCounter::new(0));
+        let mut handles = vec![];
+
+        for _ in 0..10 {
+            let c = Arc::clone(&counter);
+            handles.push(thread::spawn(move || {
+                for _ in 0..1000 {
+                    c.increment();
+                }
+            }));
+        }
+
+        for h in handles {
+            h.join().unwrap();
+        }
+
+        assert_eq!(counter.get(), 10000);
+    }
+}
