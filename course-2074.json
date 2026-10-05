@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-xiexie-666",
-  "commit": "ed7a34e25d94bdc64642c7e0cfe9e39db5877c2a",
-  "score": 7,
+  "commit": "c52a633ce86c18bbe04a1c18dc3b680bd9cb6824",
+  "score": 11,
   "totalScore": 100,
   "exercises": [
     {
@@ -30,8 +30,8 @@
     {
       "name": "process_pipe",
       "max": 4,
-      "score": 0,
-      "status": "fail",
+      "score": 4,
+      "status": "pass",
       "exitCode": 0
     },
     {
@@ -176,7 +176,7 @@
     }
   ],
   "student": "xiexie-666",
-  "runId": "37326946779",
+  "runId": "37334261067",
   "runAttempt": "1",
   "upload": {
     "status": "pending"
