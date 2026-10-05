@@ -130,11 +130,20 @@ const STACK_SIZE: usize = 1024 * 64;
 
 
 /// Allocate a stack for a coroutine. Returns `(buffer, stack_top)` where `stack_top` is the high address
+/// (the stack grows down). Keep the buffer alive while the coroutine uses this stack.
+pub fn alloc_stack() -> (Vec<u8>, usize) {
+    let buf = vec![0u8; STACK_SIZE];
+    let top = (buf.as_ptr() as usize + STACK_SIZE) & !15;
+    (buf, top)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::sync::atomic::{AtomicU32, Ordering};
+    use std::sync::atomic::{AtomicPtr, AtomicU32, Ordering};
     static COUNTER: AtomicU32 = AtomicU32::new(0);
+    static MAIN_CTX_PTR: AtomicPtr<TaskContext> = AtomicPtr::new(std::ptr::null_mut());
+    static TASK_CTX_PTR: AtomicPtr<TaskContext> = AtomicPtr::new(std::ptr::null_mut());
     extern "C" fn task_entry() {
         COUNTER.store(42, Ordering::SeqCst);
         loop { std::hint::spin_loop(); }
@@ -158,19 +167,22 @@ mod tests {
     #[test]
     fn test_switch_to_task() {
         COUNTER.store(0, Ordering::SeqCst);
-        static mut MAIN_CTX_PTR: *mut TaskContext = std::ptr::null_mut();
-        static mut TASK_CTX_PTR: *mut TaskContext = std::ptr::null_mut();
         extern "C" fn cooperative_task() {
             COUNTER.store(99, Ordering::SeqCst);
-            unsafe { switch_context(&mut *TASK_CTX_PTR, &*MAIN_CTX_PTR); }
+            unsafe {
+                switch_context(
+                    &mut *TASK_CTX_PTR.load(Ordering::SeqCst),
+                    &*MAIN_CTX_PTR.load(Ordering::SeqCst),
+                );
+            }
         }
         let (_stack_buf, stack_top) = alloc_stack();
         let mut main_ctx = TaskContext::empty();
         let mut task_ctx = TaskContext::empty();
         task_ctx.init(stack_top, cooperative_task as *const () as usize);
         unsafe {
-            MAIN_CTX_PTR = &mut main_ctx;
-            TASK_CTX_PTR = &mut task_ctx;
+            MAIN_CTX_PTR.store(&mut main_ctx, Ordering::SeqCst);
+            TASK_CTX_PTR.store(&mut task_ctx, Ordering::SeqCst);
             switch_context(&mut main_ctx, &task_ctx);
         }
         assert_eq!(COUNTER.load(Ordering::SeqCst), 99);
