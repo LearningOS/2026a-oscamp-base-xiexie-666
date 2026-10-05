@@ -1,4 +1,57 @@
-#![cfg_attr(not(test), no_std)]#[unsafe(no_mangle)]pub unsafe extern "C" fn my_memcpy(dst: *mut u8, src: *const u8, n: usize) -> *mut u8 {    for i in 0..n { dst.add(i).write(src.add(i).read()); }    dst}#[unsafe(no_mangle)]pub unsafe extern "C" fn my_memset(dst: *mut u8, c: u8, n: usize) -> *mut u8 {    for i in 0..n { dst.add(i).write(c); }    dst}#[unsafe(no_mangle)]pub unsafe extern "C" fn my_memmove(dst: *mut u8, src: *const u8, n: usize) -> *mut u8 {    let d = dst as usize;    let s = src as usize;    if d > s && d < s.saturating_add(n) {        for i in (0..n).rev() { dst.add(i).write(src.add(i).read()); }    } else {        for i in 0..n { dst.add(i).write(src.add(i).read()); }    }    dst}#[unsafe(no_mangle)]pub unsafe extern "C" fn my_strlen(s: *const u8) -> usize {    let mut len = 0;    while s.add(len).read() != 0 { len += 1; }    len}#[unsafe(no_mangle)]pub unsafe extern "C" fn my_strcmp(s1: *const u8, s2: *const u8) -> i32 {    let mut i = 0;
+#![cfg_attr(not(test), no_std)]
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn my_memcpy(dst: *mut u8, src: *const u8, n: usize) -> *mut u8 {
+    for i in 0..n {
+        dst.add(i).write(src.add(i).read());
+    }
+    dst
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn my_memset(dst: *mut u8, c: u8, n: usize) -> *mut u8 {
+    for i in 0..n {
+        dst.add(i).write(c);
+    }
+    dst
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn my_memmove(dst: *mut u8, src: *const u8, n: usize) -> *mut u8 {
+    let d = dst as usize;
+    let s = src as usize;
+    if d > s && d < s.saturating_add(n) {
+        for i in (0..n).rev() {
+            dst.add(i).write(src.add(i).read());
+        }
+    } else {
+        for i in 0..n {
+            dst.add(i).write(src.add(i).read());
+        }
+    }
+    dst
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn my_strlen(s: *const u8) -> usize {
+    let mut len = 0;
+    while s.add(len).read() != 0 {
+        len += 1;
+    }
+    len
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn my_strcmp(s1: *const u8, s2: *const u8) -> i32 {
+    let mut i = 0;
+    loop {
+        let a = s1.add(i).read();
+        let b = s2.add(i).read();
+        if a != b { return a as i32 - b as i32; }
+        if a == 0 { return 0; }
+        i += 1;
+    }
+}
 
 #[cfg(test)])
 // ============================================================
