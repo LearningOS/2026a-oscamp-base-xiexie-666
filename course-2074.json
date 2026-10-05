@@ -2,7 +2,7 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-xiexie-666",
-  "commit": "308bc6fa44ad1d5bbb8f0c28a66048267a2f71e7",
+  "commit": "4942523ea7a61171975ea1ca601e210c3236e326",
   "score": 43,
   "totalScore": 100,
   "exercises": [
@@ -39,7 +39,7 @@
       "max": 4,
       "score": 0,
       "status": "fail",
-      "exitCode": 101
+      "exitCode": 0
     },
     {
       "name": "bump_allocator",
@@ -176,7 +176,7 @@
     }
   ],
   "student": "xiexie-666",
-  "runId": "37338439302",
+  "runId": "37339397188",
   "runAttempt": "1",
   "upload": {
     "status": "pending"
