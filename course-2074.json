@@ -2,7 +2,7 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-xiexie-666",
-  "commit": "4a3ffb96b19ac707f9c9b145b8066c02f4d98ea7",
+  "commit": "e28d0750ca4a06f30cacbce1ea37a9e64831550c",
   "score": 7,
   "totalScore": 100,
   "exercises": [
@@ -46,7 +46,7 @@
       "max": 5,
       "score": 0,
       "status": "fail",
-      "exitCode": 101
+      "exitCode": 0
     },
     {
       "name": "free_list_allocator",
@@ -176,7 +176,7 @@
     }
   ],
   "student": "xiexie-666",
-  "runId": "37324077314",
+  "runId": "37324566418",
   "runAttempt": "1",
   "upload": {
     "status": "pending"
