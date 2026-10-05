@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-xiexie-666",
-  "commit": "b6de9df1d96962cc755f67d527bb0ee63bd74165",
-  "score": 94,
+  "commit": "13014b83ad7a2ae35a89de0d88c14520d217953d",
+  "score": 100,
   "totalScore": 100,
   "exercises": [
     {
@@ -107,9 +107,9 @@
     {
       "name": "stack_coroutine",
       "max": 6,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 6,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "green_threads",
@@ -176,7 +176,7 @@
     }
   ],
   "student": "xiexie-666",
-  "runId": "37353661793",
+  "runId": "37354047236",
   "runAttempt": "1",
   "upload": {
     "status": "pending"
