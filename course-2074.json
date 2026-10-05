@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-xiexie-666",
-  "commit": "ebbd48817ef4c9155cfa8ecacfb1660468e9c458",
-  "score": 84,
+  "commit": "32415f15bcea92c6d05551c317d52b187564ad47",
+  "score": 87,
   "totalScore": 100,
   "exercises": [
     {
@@ -128,9 +128,9 @@
     {
       "name": "tokio_tasks",
       "max": 3,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 3,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "async_channel_ex",
@@ -176,7 +176,7 @@
     }
   ],
   "student": "xiexie-666",
-  "runId": "37351443070",
+  "runId": "37352277885",
   "runAttempt": "1",
   "upload": {
     "status": "pending"
