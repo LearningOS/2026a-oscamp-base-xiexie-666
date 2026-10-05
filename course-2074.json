@@ -2,7 +2,7 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-xiexie-666",
-  "commit": "ceb0829215dc3c4a299d4526ba26cdbb53b8393e",
+  "commit": "f493e699affcf68c533dcbce5ebb890cbc4be5b4",
   "score": 7,
   "totalScore": 100,
   "exercises": [
@@ -67,7 +67,7 @@
       "max": 5,
       "score": 0,
       "status": "fail",
-      "exitCode": 101
+      "exitCode": 0
     },
     {
       "name": "atomic_counter",
@@ -176,7 +176,7 @@
     }
   ],
   "student": "xiexie-666",
-  "runId": "37325563153",
+  "runId": "37325739212",
   "runAttempt": "1",
   "upload": {
     "status": "pending"
