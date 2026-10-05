@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-xiexie-666",
-  "commit": "db9dc345ae11d64909b022663e55400032793a5c",
-  "score": 51,
+  "commit": "a3c489fb8b375ad594915f7ff9ae28696f068d7d",
+  "score": 60,
   "totalScore": 100,
   "exercises": [
     {
@@ -93,16 +93,16 @@
     {
       "name": "spinlock_guard",
       "max": 4,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 4,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "rwlock",
       "max": 5,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 5,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "stack_coroutine",
@@ -176,7 +176,7 @@
     }
   ],
   "student": "xiexie-666",
-  "runId": "37348393668",
+  "runId": "37348624521",
   "runAttempt": "1",
   "upload": {
     "status": "pending"
