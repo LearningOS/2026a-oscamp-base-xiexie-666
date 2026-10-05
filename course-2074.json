@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-xiexie-666",
-  "commit": "4942523ea7a61171975ea1ca601e210c3236e326",
-  "score": 43,
+  "commit": "4c6c50276654cf5169f98f3fbde38ae0eadaea8e",
+  "score": 47,
   "totalScore": 100,
   "exercises": [
     {
@@ -37,8 +37,8 @@
     {
       "name": "mem_primitives",
       "max": 4,
-      "score": 0,
-      "status": "fail",
+      "score": 4,
+      "status": "pass",
       "exitCode": 0
     },
     {
@@ -176,7 +176,7 @@
     }
   ],
   "student": "xiexie-666",
-  "runId": "37339397188",
+  "runId": "37339629611",
   "runAttempt": "1",
   "upload": {
     "status": "pending"
